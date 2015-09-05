@@ -16,13 +16,16 @@ public class HomeActivity extends Activity
 	Button shopBtn;
 	Button orderBtn;
 
-	LinearLayout leftNavit;
+	ScrollView leftNavit;
 	LinearLayout viplt;
 	LinearLayout typelt;
 	LinearLayout brandlt;
 	LinearLayout shoplt;
 	LinearLayout orderlt;
 	LinearLayout defelt;
+	
+	
+	TextView homeTitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +41,7 @@ public class HomeActivity extends Activity
 		orderBtn = (Button)findViewById(R.id.orderBtn);
 
 
-		leftNavit = (LinearLayout)findViewById(R.id.leftNavit);
+		leftNavit = (ScrollView)findViewById(R.id.leftNavit);
 		viplt = (LinearLayout)findViewById(R.id.vipLayout);
 		typelt = (LinearLayout)findViewById(R.id.typeLayout);
 		brandlt = (LinearLayout)findViewById(R.id.brandLayout);
@@ -46,6 +49,8 @@ public class HomeActivity extends Activity
 		orderlt = (LinearLayout)findViewById(R.id.orderLayout);
 		defelt = (LinearLayout)findViewById(R.id.defeltlayout);
 
+		homeTitle = (TextView)findViewById(R.id.homeTitle);
+		
 		/**
 		 *主页菜单
 		 */
@@ -54,7 +59,7 @@ public class HomeActivity extends Activity
 				public void onClick(View p1)
 				{
 					//Toast.makeText(HomeActivity.this,""+(leftNavit.getVisibility()==0),0).show();
-					leftNavit.setRight(350);
+					//leftNavit.setRight(350);
 					leftNavit.setBackgroundColor(Color.parseColor("#1061A5"));
 					if (leftNavit.getVisibility() == 0)
 					{
@@ -79,6 +84,8 @@ public class HomeActivity extends Activity
 					shoplt.setVisibility(8);
 					orderlt.setVisibility(8);
 					defelt.setVisibility(8);
+					
+					homeTitle.setText("分类管理");
 				}
 			});
 
@@ -93,6 +100,8 @@ public class HomeActivity extends Activity
 					shoplt.setVisibility(8);
 					orderlt.setVisibility(8);
 					defelt.setVisibility(8);
+					
+					homeTitle.setText("会员管理");
 				}
 			});
 		
@@ -107,26 +116,29 @@ public class HomeActivity extends Activity
 					shoplt.setVisibility(8);
 					orderlt.setVisibility(8);
 					defelt.setVisibility(8);	
+					
+					homeTitle.setText("品牌管理");
 				}
 			});
+		
+		shopBtn.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View p1)
+			{
+				leftNavit.setVisibility(8);
+				viplt.setVisibility(8);
+				typelt.setVisibility(8);
+				brandlt.setVisibility(8);
+				shoplt.setVisibility(0);
+				orderlt.setVisibility(8);
+				defelt.setVisibility(8);	
+				
+				homeTitle.setText("商品管理");
+			}
+		});
 
-		shoplt.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View p1)
-				{
-					Toast.makeText(HomeActivity.this,"",0).show();
-					leftNavit.setVisibility(8);
-					viplt.setVisibility(8);
-					typelt.setVisibility(8);
-					brandlt.setVisibility(8);
-					shoplt.setVisibility(0);
-					orderlt.setVisibility(8);
-					defelt.setVisibility(8);
 
-				}
-			});
-
-		orderlt.setOnClickListener(new OnClickListener(){
+		orderBtn.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View p1)
 				{
@@ -137,6 +149,8 @@ public class HomeActivity extends Activity
 					shoplt.setVisibility(8);
 					orderlt.setVisibility(0);
 					defelt.setVisibility(8);
+					
+					homeTitle.setText("订单管理");
 				}
 			});
 
